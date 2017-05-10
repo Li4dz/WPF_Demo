@@ -8,5 +8,6 @@ namespace Model
 {
     public class ListaPersona : List<Persona>
     {
+
     }
 }
