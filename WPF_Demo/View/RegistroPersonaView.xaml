@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="WPF_Demo.View.RegistroPersonaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF_Demo.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="525">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" ></ColumnDefinition>
+            <ColumnDefinition Width="*" ></ColumnDefinition>
+            <ColumnDefinition Width="50" ></ColumnDefinition>
+            <ColumnDefinition Width="*" ></ColumnDefinition>
+            <ColumnDefinition Width="*" ></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+        <Label Grid.Column="0" Grid.Row="0" Content="Nombre"></Label>
+        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Nombre}"></TextBox>
+
+        <Label Grid.Column="3" Grid.Row="0" Content="Apellido"></Label>
+        <TextBox Grid.Column="4" Grid.Row="0" Text="{Binding Apellido}"></TextBox>
+
+        <Label Grid.Column="0" Grid.Row="1" Content="Sexo"></Label>
+        <ComboBox Grid.Column="1" Grid.Row="1" SelectedItem="{Binding Sexo}" ItemsSource="{Binding ListaSexo}" DisplayMemberPath="SexoNombre"></ComboBox>
+
+        <Label Grid.Column="3" Grid.Row="1" Content="Fecha Nacimiento"></Label>
+        <DatePicker Grid.Column="4" Grid.Row="1" SelectedDateFormat="Short" SelectedDate="{Binding FechaNacimiento}"></DatePicker>
+
+        <Button Grid.Column="0" Grid.Row="3" Content="GUARDAR" Grid.ColumnSpan="5" Command="{Binding CommandRegistrarPersona}"></Button>
+        <DataGrid Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="5" SelectionUnit="FullRow" ItemsSource="{Binding ListaPersona}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nombre" Width="100" Binding="{Binding Nombre}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Apellido"  Width="100" Binding="{Binding Apellido}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Sexo"  Width="100" Binding="{Binding Sexo.SexoNombre}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Fecha Nacimiento"  Width="150" Binding="{Binding FechaNacimiento, StringFormat=d}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
